@@ -1,6 +1,9 @@
 package br.senai.sp.jandira.ui;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -17,6 +20,15 @@ public class TelaImc {
 	
 	public void TelaCriar() {
 		
+		//FONTES DA MINHA TELA
+		Font fontTitulo = new Font("Cooper Black",Font.BOLD, 22);
+		Font fontTexto = new Font("Arial",Font.PLAIN, 15);
+		Font fontSubtitulo = new Font("Arial",Font.BOLD,18);
+		Font fontResultado = new Font("Arial",Font.BOLD,15);
+		
+		//CORES DA MINHA TELA
+		Color titulo = new Color(50,80,77);
+		
 		CalculoImc Multiplicar = new CalculoImc();
 		
 		JFrame telaImc = new JFrame();
@@ -28,11 +40,12 @@ public class TelaImc {
 		// CRIAR UM LABEL
 		JLabel lblCalcular = new JLabel();
 		this.setColor(Color.white);
-		lblCalcular.setForeground(Color.blue);
+		lblCalcular.setFont(fontTitulo);
+		lblCalcular.setForeground(titulo);
 		lblCalcular.setBackground(Color.lightGray);
 		this.add(lblCalcular);
 		lblCalcular.setText("Cálculo de IMC");
-		lblCalcular.setBounds(100,20,110,30);
+		lblCalcular.setBounds(100,20,300,30);
 		
 		//PESO
 		JLabel lblPeso = new JLabel();
@@ -68,14 +81,18 @@ public class TelaImc {
 		lblValor.setText("Valor IMC: ");
 		lblValor.setBounds(40,250,110,30);
 		
-		//ESTADO IMC
-		JLabel lblEstado = new JLabel();
-		lblEstado.setText("Estado IMC: ");
-		lblEstado.setBounds(40,280,110,30);
+		JLabel lblImc = new JLabel();
+		lblImc.setText("");
+		lblImc.setBounds(120,250,110,30);
 		
+		//ESTADO IMC	
 		JLabel lblEstado1 = new JLabel();
 		lblEstado1.setText("Estado IMC: ");
 		lblEstado1.setBounds(40,280,110,30);
+		
+		JLabel lblEstado = new JLabel();
+		lblEstado.setText("");
+		lblEstado.setBounds(120,280,110,30);
 		
 		//COLOCAR O LABEL NA TELA
 		telaImc.getContentPane().add(lblPeso);
@@ -87,64 +104,35 @@ public class TelaImc {
 		telaImc.getContentPane().add(lblResultados);
 		telaImc.getContentPane().add(lblValor);
 		telaImc.getContentPane().add(lblEstado1);
+		telaImc.getContentPane().add(lblImc);
+		telaImc.getContentPane().add(lblEstado);
 		
 		telaImc.setVisible(true);
 		
-		//DEFINIR OUVINTE (LISTENER) DE CLICK DO MOUSE
-		txtPeso.addMouseListener(new MouseListener() {
-					
+		
+		btnCalcular.addActionListener(new ActionListener() {
+
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				System.out.println("Soltou!!! ");		
-			}	
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("Apertou!!! ");
-						
-			}	
-			@Override
-			public void mouseExited(MouseEvent e) {
-				System.out.println("Saiu!!! ");
-						
-			}	
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				System.out.println("Entrou!!!");
+			public void actionPerformed(ActionEvent e) {
 				
-			}		
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub	
+				//PEGANDO A ALTURA E COLOCANDO EM STRING
+				CalculoImc imc = new CalculoImc();
+				imc.setAltura(txtAltura.getText());
+				imc.setPeso(txtPeso.getText());
+				
+				lblEstado.setText(imc.obterStatus());
+				lblImc.setText(imc.obterImcString());
 			}
-		}
-		);
-		txtPeso.addKeyListener(new KeyListener() {			
-			@Override
-			public void keyTyped(KeyEvent e) {
-				System.out.println("Tecla digitada!");
-				System.out.println(e.getKeyChar());		
-			}
-			@Override
-			public void keyReleased(KeyEvent e) {
-				System.out.println("Tecla solta!");
-						
-			}
-			@Override
-			public void keyPressed(KeyEvent e) {
-				System.out.println("Tecla apertada!");		
-			}
+			
 		});
 	}
 
 	private void setColor(Color white) {
 		// TODO Auto-generated method stub
-		
 	}
-
-	private void add(JLabel label) {
+	private void add(JLabel lblCalcular) {
 		// TODO Auto-generated method stub
 		
 	}
-	
-
 }
+

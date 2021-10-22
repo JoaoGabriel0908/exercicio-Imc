@@ -2,35 +2,49 @@ package br.senai.sp.jandira.calculo;
 
 public class CalculoImc {
 	
-	public double peso;
-	public double altura;
-	public String status;
-	public double imc;
-
-	public void multiplicar () 
+	private double peso;
+	private double altura;
+	
+	//PEGAR E ATRIBUIR PESO
+	//PARSEDOUBLE É PARA CONVERTER DOUBLE EM STRING
+	public void setPeso (String peso) {
+		this.peso = Double.parseDouble(peso);
+	}
+	public double getPeso () {
+		return peso;
+	}
+	//PEGAR E ATRIBUIR ALTURA
+	public void setAltura (String altura) {
+		this.altura = Double.parseDouble(altura);
+	}
+	public double getAltura () {
+		return altura;
+	}
+	//RETORNAR VALOR
+	public double calcularImc () 
 	{
-		imc = altura * altura/peso;
-		System.out.println(status);
-
-		obter ();
+		return peso / (altura*altura);
+	}
+	//RETORNADO O VALOR EM STRING
+	public String obterImcString() {
+		return String.valueOf(calcularImc());
 
 	}
-	public void obter ()
-	{
-		if (imc < 18.5) {
-			System.out.println("Abaixo do peso");
-		} else if (imc == 18.5 && imc <24.9) {
-			System.out.println("Peso normal");
-		} else if (imc == 25 && imc < 29.9) {
-			System.out.println("Sobrepeso");
-		} else if (imc == 30 && imc < 34.9) {
-			System.out.println("Obesidade grau 1");
-		} else if (imc == 35 && imc < 39.9) {
-			System.out.println("Obesidade grau 2");
-		} else if (imc >= 40) {
-			System.out.println("Obesidade grau 3 ou mórbida");
+	
+	public String obterStatus () {
+		if (calcularImc() < 18.5) {
+			return "Abaixo do peso";
+		} else if (calcularImc() >= 18.5 && calcularImc() <25) {
+			return"Peso normal";
+		} else if (calcularImc() >= 25 && calcularImc() < 30) {
+			return"Sobrepeso";
+		} else if (calcularImc() >= 30 && calcularImc() < 35) {
+			return"Obesidade grau 1";
+		} else if (calcularImc() >= 35 && calcularImc() < 40) {
+			return"Obesidade grau 2";
+		} else {
+			return"Obesidade grau 3 ou mórbida";
+		
 		}
 	}
-
 }
-
