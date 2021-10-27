@@ -43,7 +43,7 @@ public class CalculoImc {
 		} else if (calcularImc() >= 35 && calcularImc() < 40) {
 			return"Obesidade grau 2";
 		} else {
-			return"Obesidade grau 3 ou mórbida";
+			return"Obesidade grau 3";
 		
 		}
 	}

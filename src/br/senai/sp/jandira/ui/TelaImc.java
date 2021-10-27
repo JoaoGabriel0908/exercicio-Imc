@@ -22,18 +22,18 @@ public class TelaImc {
 		
 		//FONTES DA MINHA TELA
 		Font fontTitulo = new Font("Cooper Black",Font.BOLD, 22);
-		Font fontTexto = new Font("Arial",Font.PLAIN, 15);
-		Font fontSubtitulo = new Font("Arial",Font.BOLD,18);
-		Font fontResultado = new Font("Arial",Font.BOLD,15);
+		Font fontTexto = new Font("Arial",Font.PLAIN, 14);
+		Font fontSubtitulo = new Font("Arial",Font.BOLD,15);
+		Font fontResultado = new Font("Arial",Font.BOLD,14);
 		
 		//CORES DA MINHA TELA
 		Color titulo = new Color(50,80,77);
+		Color resultado = new Color(200, 19, 139);
 		
-		CalculoImc Multiplicar = new CalculoImc();
-		
+		//TAMANHO E FORMATO DA MINHA TELA
 		JFrame telaImc = new JFrame();
 		telaImc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		telaImc.setSize(600, 800);
+		telaImc.setSize(400, 500);
 		telaImc.setTitle("Calculadora IMC");
 		telaImc.setLayout(null);
 		
@@ -50,11 +50,13 @@ public class TelaImc {
 		//PESO
 		JLabel lblPeso = new JLabel();
 		lblPeso.setText("Seu peso: ");
+		lblPeso.setFont(fontSubtitulo);
 		lblPeso.setBounds(40,80,110,30);
 		
 		//ALTURA
 		JLabel lblAltura = new JLabel();
 		lblAltura.setText("Sua altura: ");
+		lblAltura.setFont(fontSubtitulo);
 		lblAltura.setBounds(40,120,110,30);
 		
 		//CRIAR UM FIELD
@@ -74,25 +76,37 @@ public class TelaImc {
 		//RESULTADO
 		JLabel lblResultados = new JLabel();
 		lblResultados.setText("RESULTADOS: ");
-		lblResultados.setBounds(40,220,110,30);
+		lblResultados.setFont(fontSubtitulo);
+		lblResultados.setBounds(40,220,150,30);
 		
 		//VALOR IMC
 		JLabel lblValor = new JLabel();
 		lblValor.setText("Valor IMC: ");
+		lblValor.setFont(fontTexto);
 		lblValor.setBounds(40,250,110,30);
 		
+		//RESULTADO OBTIDO (VALOR)
 		JLabel lblImc = new JLabel();
 		lblImc.setText("");
+		lblImc.setFont(fontResultado);
+		lblImc.setBackground(resultado);
+		lblImc.setForeground(resultado);
 		lblImc.setBounds(120,250,110,30);
 		
 		//ESTADO IMC	
 		JLabel lblEstado1 = new JLabel();
 		lblEstado1.setText("Estado IMC: ");
+		lblEstado1.setFont(fontTexto);
 		lblEstado1.setBounds(40,280,110,30);
 		
+		//RESULTADO OBTIDO (STATUS)
 		JLabel lblEstado = new JLabel();
 		lblEstado.setText("");
-		lblEstado.setBounds(120,280,110,30);
+		lblEstado.setFont(fontResultado);
+		lblEstado.setBackground(resultado);
+		lblEstado.setForeground(resultado);
+		lblEstado.setBackground(titulo);
+		lblEstado.setBounds(120,280,150,30);
 		
 		//COLOCAR O LABEL NA TELA
 		telaImc.getContentPane().add(lblPeso);
@@ -107,15 +121,16 @@ public class TelaImc {
 		telaImc.getContentPane().add(lblImc);
 		telaImc.getContentPane().add(lblEstado);
 		
+		//HABILITAR A VISIBILIDADE DA TELA
 		telaImc.setVisible(true);
 		
-		
+		//HABILITAR A AÇÃO DO BOTÃO "CALCULAR"
 		btnCalcular.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				//PEGANDO A ALTURA E COLOCANDO EM STRING
+				//TRANSFORMANDO ALTURA (DOUBLE) EM TEXTO (STRING)
 				CalculoImc imc = new CalculoImc();
 				imc.setAltura(txtAltura.getText());
 				imc.setPeso(txtPeso.getText());
